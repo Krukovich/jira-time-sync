@@ -1,11 +1,11 @@
 import * as React from "react";
-import TopBar from "../components/TopBar.js";
-import ActiveTimer from "../components/ActiveTimer.js";
-import DayProgress from "../components/DayProgress.js";
-import TaskList from "../components/TaskList.js";
-import NonDevPanel from "../components/NonDevPanel.js";
-import TimeLog from "../components/TimeLog.js";
-import SubmitAllButton from "../components/SubmitAllButton.js";
+import TopBar from "../components/TopBar/TopBar.js";
+import ActiveTimer from "../components/ActiveTimer/ActiveTimer.js";
+import DayProgress from "../components/DayProgress/DayProgress.js";
+import TaskList from "../components/TaskList/TaskList.js";
+import NonDevPanel from "../components/NonDevPanel/NonDevPanel.js";
+import TimeLog from "../components/TimeLog/TimeLog.js";
+import SubmitAllButton from "../components/SubmitAllButton/SubmitAllButton.js";
 import { mockActiveTask, mockDayProgress, mockTasks, mockTimeEntries } from "../mocks/data.js";
 
 export default function Dashboard() {

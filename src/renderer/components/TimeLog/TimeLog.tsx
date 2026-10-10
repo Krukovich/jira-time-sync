@@ -1,13 +1,10 @@
-import * as React from "react";
-import { MockTimeEntry } from "../mocks/data.js";
+// libraries
+import React from "react";
+// utils
+import { MockTimeEntry } from "../../mocks/data.js";
+import { formatHM } from "../../utils/format.js";
 
-function formatHM(seconds: number) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  return `${h}ч ${String(m).padStart(2, "0")}м`;
-}
-
-export default function TimeLog({ entries }: { entries: MockTimeEntry[] }) {
+const TimeLog = ({ entries }: { entries: MockTimeEntry[] }) => {
   const totalSeconds = entries.reduce((s, e) => s + e.durationSeconds, 0);
 
   return (
@@ -56,4 +53,6 @@ export default function TimeLog({ entries }: { entries: MockTimeEntry[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default TimeLog;

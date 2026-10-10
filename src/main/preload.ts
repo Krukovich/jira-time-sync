@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from "electron";
+import { contextBridge } from "electron";
 
 // Безопасно экспортируем API в контекст React (будет доступно через window.electronAPI)
 contextBridge.exposeInMainWorld("electronAPI", {

@@ -1,26 +1,17 @@
-import * as React from "react";
-import { MockTask } from "../mocks/data.js";
+// libraries
+import React from "react";
+// utils
+import { formatHM } from "../../utils/format.js";
+import { MockTask } from "../../mocks/data.js";
 
-function formatHM(seconds: number) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  return m ? `${h}ч ${m}м` : `${h}ч`;
-}
-
-function dueColor(due: string | null) {
+const dueColor = (due: string | null) => {
   if (!due) return "var(--text-secondary)";
   if (due === "Просрочено") return "var(--danger)";
   if (due === "Сегодня") return "var(--warning)";
   return "var(--success)";
-}
+};
 
-export default function TaskList({
-  tasks,
-  onStart,
-}: {
-  tasks: MockTask[];
-  onStart?: (key: string) => void;
-}) {
+const TaskList = ({ tasks, onStart }: { tasks: MockTask[]; onStart?: (key: string) => void }) => {
   return (
     <div className="card">
       <div className="card-title">
@@ -113,4 +104,6 @@ export default function TaskList({
       </div>
     </div>
   );
-}
+};
+
+export default TaskList;
