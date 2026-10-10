@@ -13,6 +13,21 @@
   --mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
 }
 
+body.light {
+  --bg-app: #ffffff;
+  --bg-panel: #f6f8fa;
+  --bg-card: #ffffff;
+  --border: #d0d7de;
+  --text-primary: #1f2328;
+  --text-secondary: #656d76;
+  --accent: #0969da;
+  --success: #1a7f37;
+  --warning: #9a6700;
+  --danger: #cf222e;
+  --timer: #bc4c00;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -30,6 +45,9 @@ body {
     sans-serif;
   font-size: 13px;
   overflow: hidden;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 #root {
@@ -81,6 +99,10 @@ button {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  box-shadow: var(--shadow);
 }
 
 .card-title {

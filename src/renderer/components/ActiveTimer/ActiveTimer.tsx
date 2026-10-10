@@ -18,7 +18,7 @@ export const ActiveTimer = ({
     <div
       className="card"
       style={{
-        background: running ? "linear-gradient(135deg, #161B22, #1f1810)" : "var(--bg-panel)",
+        background: "var(--bg-card)",
         borderColor: running ? "var(--timer)" : "var(--border)",
       }}
     >

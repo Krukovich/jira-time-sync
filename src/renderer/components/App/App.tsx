@@ -8,12 +8,15 @@ import Statistics from "@renderer/views/Statistics/Statistics";
 import Settings from "@renderer/views/Settings/Settings";
 import Profile from "@renderer/views/Profile/Profile";
 // hooks
+import useApplyTheme from "@renderer/hooks/useApplyTheme";
 import { useNavigation } from "@renderer/store/navigation";
 // utils
 import "../../styles/global.css";
 
 const App = () => {
   const { view } = useNavigation();
+
+  useApplyTheme();
 
   return (
     <div className="app-layout">

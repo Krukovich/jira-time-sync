@@ -2,6 +2,7 @@
 import React from "react";
 // hooks
 import { useNavigation, View } from "@renderer/store/navigation";
+import { useTheme } from "@renderer/store/theme";
 
 const items: { id: View; icon: string; label: string }[] = [
   { id: "dashboard", icon: "⏱", label: "Дашборд" },
@@ -12,6 +13,7 @@ const items: { id: View; icon: string; label: string }[] = [
 
 const Sidebar = () => {
   const { view, setView } = useNavigation();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <aside
@@ -23,6 +25,7 @@ const Sidebar = () => {
         alignItems: "center",
         padding: "16px 0",
         gap: 8,
+        transition: "background 0.2s, border-color 0.2s",
       }}
     >
       {items.map((item) => (
@@ -47,6 +50,22 @@ const Sidebar = () => {
         </button>
       ))}
       <div style={{ flex: 1 }} />
+      <button
+        title={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+        onClick={toggleTheme}
+        style={{
+          width: 40,
+          height: 40,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 8,
+          fontSize: 16,
+          color: "var(--text-secondary)",
+        }}
+      >
+        {theme === "dark" ? "☀️" : "🌙"}
+      </button>
       <button
         title="Профиль"
         onClick={() => setView("profile")}
