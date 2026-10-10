@@ -8,6 +8,7 @@ const dueColor = (due: string | null) => {
   if (!due) return "var(--text-secondary)";
   if (due === "Просрочено") return "var(--danger)";
   if (due === "Сегодня") return "var(--warning)";
+
   return "var(--success)";
 };
 

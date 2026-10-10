@@ -12,6 +12,7 @@ const Tasks = () => {
   const filtered = mockTasks.filter((t) => {
     if (filter === "dev") return !t.jiraKey.startsWith("Non-dev");
     if (filter === "non-dev") return t.jiraKey.startsWith("Non-dev");
+
     return true;
   });
 

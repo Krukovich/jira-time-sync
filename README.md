@@ -4,8 +4,8 @@
 
 **Десктопный компаньон для разработчиков: задачи из Jira, трекинг времени и отправка worklog в один клик.**
 
-[![Electron](https://img.shields.io/badge/Electron-33-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Electron](https://img.shields.io/badge/Electron-44-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PGlite-PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://pglite.dev/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)

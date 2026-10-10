@@ -1,5 +1,9 @@
 // libraries
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
+// components
+import Checkbox from "@renderer/components/common/Checkbox/Checkbox";
+import Section from "@renderer/components/common/Section/Section";
+import Field from "@renderer/components/common/Field/Field";
 // utils
 import { mockSettings } from "@renderer/mocks/data";
 
@@ -8,6 +12,7 @@ const Settings = () => {
 
   const toggleDay = (i: number) => {
     const days = [...settings.workingDays];
+
     days[i] = !days[i];
     setSettings({ ...settings, workingDays: days });
   };
@@ -23,7 +28,6 @@ const Settings = () => {
     <div className="content-scroll" style={{ maxWidth: 720 }}>
       <h1 style={{ fontSize: 20, marginBottom: 20 }}>⚙️ Настройки</h1>
 
-      {/* Jira */}
       <Section title="🔌 JIRA">
         <Field label="URL">
           <input
@@ -54,7 +58,6 @@ const Settings = () => {
         </Field>
       </Section>
 
-      {/* Цели */}
       <Section title="🎯 ЦЕЛИ">
         <Field label="Часов в день">
           <input
@@ -90,7 +93,6 @@ const Settings = () => {
         </Field>
       </Section>
 
-      {/* Non-dev */}
       <Section title="⚡ NON-DEV">
         <Field label="Текущий квартал">
           <input
@@ -112,7 +114,6 @@ const Settings = () => {
         </Field>
       </Section>
 
-      {/* Уведомления */}
       <Section title="🔔 УВЕДОМЛЕНИЯ">
         <Checkbox
           label="Напоминать, если меньше 7 часов к концу дня"
@@ -131,7 +132,6 @@ const Settings = () => {
         />
       </Section>
 
-      {/* Данные */}
       <Section title="📦 ДАННЫЕ">
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <button className="btn-secondary">Экспорт в CSV</button>
@@ -169,44 +169,5 @@ const Settings = () => {
     </div>
   );
 };
-
-function Section({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="card" style={{ marginBottom: 16 }}>
-      <div className="card-title">{title}</div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>{children}</div>
-    </div>
-  );
-}
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: 12, alignItems: "center" }}
-    >
-      <label style={{ fontSize: 12, color: "var(--text-secondary)" }}>{label}</label>
-      {children}
-    </div>
-  );
-}
-
-function Checkbox({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: () => void;
-}) {
-  return (
-    <label
-      style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", fontSize: 13 }}
-    >
-      <input type="checkbox" checked={checked} onChange={onChange} />
-      {label}
-    </label>
-  );
-}
 
 export default Settings;

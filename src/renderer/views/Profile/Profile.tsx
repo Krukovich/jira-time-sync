@@ -1,5 +1,7 @@
 // libraries
 import React from "react";
+// components
+import StatCard from "@renderer/components/StatCard/StatCard";
 // utils
 import { mockProfile } from "@renderer/mocks/data";
 import { formatHM } from "@renderer/utils/format";
@@ -11,17 +13,6 @@ function initials(name: string) {
     .join("")
     .toUpperCase()
     .slice(0, 2);
-}
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="card" style={{ padding: 14, textAlign: "center" }}>
-      <div className="mono" style={{ fontSize: 22, marginBottom: 4 }}>
-        {value}
-      </div>
-      <div style={{ fontSize: 11, color: "var(--text-secondary)" }}>{label}</div>
-    </div>
-  );
 }
 
 const Profile = () => {

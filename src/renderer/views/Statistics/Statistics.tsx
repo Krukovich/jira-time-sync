@@ -1,5 +1,7 @@
 // libraries
 import React from "react";
+// components
+import StatCard from "@renderer/components/StatCard/StatCard";
 // utils
 import { mockMonthlyStats, mockWeeklyStats } from "@renderer/mocks/data";
 import { formatHM } from "@renderer/utils/format";
@@ -11,7 +13,6 @@ const Statistics = () => {
     <div className="content-scroll">
       <h1 style={{ fontSize: 20, marginBottom: 20 }}>📊 Статистика</h1>
 
-      {/* Сводка за месяц */}
       <div
         style={{
           display: "grid",
@@ -40,7 +41,6 @@ const Statistics = () => {
         />
       </div>
 
-      {/* График за неделю */}
       <div className="card">
         <div className="card-title">📈 За неделю</div>
         <div
@@ -131,16 +131,5 @@ const Statistics = () => {
     </div>
   );
 };
-
-function StatCard({ label, value, color }: { label: string; value: string; color?: string }) {
-  return (
-    <div className="card" style={{ padding: 14 }}>
-      <div style={{ fontSize: 11, color: "var(--text-secondary)", marginBottom: 6 }}>{label}</div>
-      <div className="mono" style={{ fontSize: 20, color: color ?? "var(--text-primary)" }}>
-        {value}
-      </div>
-    </div>
-  );
-}
 
 export default Statistics;

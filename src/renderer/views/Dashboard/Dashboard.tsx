@@ -9,7 +9,7 @@ import NonDevPanel from "@renderer/components/NonDevPanel/NonDevPanel";
 import TimeLog from "@renderer/components/TimeLog/TimeLog";
 import SubmitAllButton from "@renderer/components/SubmitAllButton/SubmitAllButton";
 // utils
-import { mockActiveTask, mockDayProgress, mockTasks, mockTimeEntries } from "../mocks/data.js";
+import { mockActiveTask, mockDayProgress, mockTasks, mockTimeEntries } from "../../mocks/data";
 
 const Dashboard = () => {
   const pendingCount = mockTimeEntries.filter((e) => !e.synced).length;
@@ -42,7 +42,7 @@ const Dashboard = () => {
           <NonDevPanel trackedSeconds={nonDevTotal} />
           <TimeLog entries={mockTimeEntries} />
 
-          <div className="full-width">
+          <div style={{ maxWidth: 720 }}>
             <SubmitAllButton pending={pendingCount} />
           </div>
         </div>
