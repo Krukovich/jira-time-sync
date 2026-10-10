@@ -1,4 +1,5 @@
-import * as React from "react";
+// libraries
+import React from "react";
 
 const items = [
   { id: "dashboard", icon: "⏱", label: "Дашборд" },
@@ -7,7 +8,7 @@ const items = [
   { id: "settings", icon: "⚙️", label: "Настройки" },
 ];
 
-export default function Sidebar({ active = "dashboard" }: { active?: string }) {
+const Sidebar = ({ active = "dashboard" }: { active?: string }) => {
   return (
     <aside
       style={{
@@ -54,4 +55,6 @@ export default function Sidebar({ active = "dashboard" }: { active?: string }) {
       </button>
     </aside>
   );
-}
+};
+
+export default Sidebar;

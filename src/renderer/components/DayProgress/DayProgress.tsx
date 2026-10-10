@@ -1,12 +1,20 @@
-import * as React from "react";
+// libraries
+import React from "react";
+// utils
+import { formatHM } from "../../utils/format.js";
 
-function formatHM(seconds: number) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  return `${h}ч ${m}м`;
-}
+const Stat = ({ label, value, color }: { label: string; value: string; color?: string }) => {
+  return (
+    <div>
+      <div style={{ fontSize: 11, color: "var(--text-secondary)", marginBottom: 4 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 16, color: color ?? "var(--text-primary)" }}>
+        {value}
+      </div>
+    </div>
+  );
+};
 
-export default function DayProgress({
+const DayProgress = ({
   tracked,
   goal,
   dev,
@@ -16,7 +24,7 @@ export default function DayProgress({
   goal: number;
   dev: number;
   nonDev: number;
-}) {
+}) => {
   const percent = Math.min(100, Math.round((tracked / goal) * 100));
   const remaining = Math.max(0, goal - tracked);
   const color = percent < 50 ? "var(--danger)" : percent < 85 ? "var(--warning)" : "var(--success)";
@@ -64,15 +72,6 @@ export default function DayProgress({
       </div>
     </div>
   );
-}
+};
 
-function Stat({ label, value, color }: { label: string; value: string; color?: string }) {
-  return (
-    <div>
-      <div style={{ fontSize: 11, color: "var(--text-secondary)", marginBottom: 4 }}>{label}</div>
-      <div className="mono" style={{ fontSize: 16, color: color ?? "var(--text-primary)" }}>
-        {value}
-      </div>
-    </div>
-  );
-}
+export default DayProgress;

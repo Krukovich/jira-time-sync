@@ -1,13 +1,9 @@
-import * as React from "react";
+// libraries
+import React from "react";
+// utils
+import { formatClock } from "../../utils/format.js";
 
-function formatClock(seconds: number) {
-  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
-  const s = String(seconds % 60).padStart(2, "0");
-  return `${h}:${m}:${s}`;
-}
-
-export default function ActiveTimer({
+export const ActiveTimer = ({
   jiraKey,
   summary,
   elapsedSeconds,
@@ -17,7 +13,7 @@ export default function ActiveTimer({
   summary: string;
   elapsedSeconds: number;
   running: boolean;
-}) {
+}) => {
   return (
     <div
       className="card"
@@ -94,4 +90,6 @@ export default function ActiveTimer({
       `}</style>
     </div>
   );
-}
+};
+
+export default ActiveTimer;

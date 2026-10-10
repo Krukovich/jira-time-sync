@@ -1,9 +1,11 @@
-import * as React from "react";
+// libraries
+import React from "react";
+// components
 import Sidebar from "../Sidebar/Sidebar.js";
 import Dashboard from "../../views/Dashboard.js";
-import "../../styles/global.css"
+import "../../styles/global.css";
 
-export default function App() {
+const App = () => {
   return (
     <div className="app-layout">
       <Sidebar active="dashboard" />
@@ -12,4 +14,6 @@ export default function App() {
       </div>
     </div>
   );
-}
+};
+
+export default App;

@@ -1,6 +1,7 @@
-import * as React from "react";
+// libraries
+import React from "react";
 
-export default function NonDevPanel({ trackedSeconds }: { trackedSeconds: number }) {
+const NonDevPanel = ({ trackedSeconds }: { trackedSeconds: number }) => {
   const h = Math.floor(trackedSeconds / 3600);
   const m = Math.floor((trackedSeconds % 3600) / 60);
 
@@ -34,4 +35,6 @@ export default function NonDevPanel({ trackedSeconds }: { trackedSeconds: number
       </div>
     </div>
   );
-}
+};
+
+export default NonDevPanel;

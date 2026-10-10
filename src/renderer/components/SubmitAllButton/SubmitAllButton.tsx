@@ -1,6 +1,16 @@
-import * as React from "react";
+// libraries
+import React from "react";
 
-export default function SubmitAllButton({ pending }: { pending: number }) {
+const pluralize = (n: number, one: string, few: string, many: string) => {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+
+  return many;
+};
+
+const SubmitAllButton = ({ pending }: { pending: number }) => {
   const disabled = pending === 0;
 
   return (
@@ -21,12 +31,6 @@ export default function SubmitAllButton({ pending }: { pending: number }) {
       ⬆ Отправить всё в Jira ({pending} {pluralize(pending, "запись", "записи", "записей")})
     </button>
   );
-}
+};
 
-function pluralize(n: number, one: string, few: string, many: string) {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-  return many;
-}
+export default SubmitAllButton;

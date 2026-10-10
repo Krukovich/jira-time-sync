@@ -1,12 +1,9 @@
-import * as React from "react";
+// libraries
+import React from "react";
+// utils
+import { formatHMS } from "../../utils/format.js";
 
-function formatHMS(seconds: number) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  return `${h}ч ${m}м`;
-}
-
-export default function TopBar({ tracked, goal }: { tracked: number; goal: number }) {
+const TopBar = ({ tracked, goal }: { tracked: number; goal: number }) => {
   return (
     <header
       style={{
@@ -29,4 +26,6 @@ export default function TopBar({ tracked, goal }: { tracked: number; goal: numbe
       </div>
     </header>
   );
-}
+};
+
+export default TopBar;
