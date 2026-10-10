@@ -2,6 +2,8 @@
 import React from "react";
 // components
 import Stat from "@renderer/components/Stat/Stat";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { formatHM } from "@renderer/utils/format";
 
@@ -16,13 +18,15 @@ const DayProgress = ({
   dev: number;
   nonDev: number;
 }) => {
+  const { t } = useTranslation();
+
   const percent = Math.min(100, Math.round((tracked / goal) * 100));
   const remaining = Math.max(0, goal - tracked);
   const color = percent < 50 ? "var(--danger)" : percent < 85 ? "var(--warning)" : "var(--success)";
 
   return (
     <div className="card">
-      <div className="card-title">📊 ПРОГРЕСС ДНЯ</div>
+      <div className="card-title">📊 {t("dashboard.dayProgress")}</div>
 
       <div
         style={{
@@ -56,8 +60,8 @@ const DayProgress = ({
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-        <Stat label="Затрекано" value={formatHM(tracked)} />
-        <Stat label="Осталось" value={formatHM(remaining)} />
+        <Stat label={t("dashboard.tracked")} value={formatHM(tracked)} />
+        <Stat label={t("dashboard.remaining")} value={formatHM(remaining)} />
         <Stat label="Dev" value={formatHM(dev)} color="var(--accent)" />
         <Stat label="Non-dev" value={formatHM(nonDev)} color="var(--warning)" />
       </div>

@@ -1,16 +1,20 @@
 // libraries
 import React from "react";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { MockTimeEntry } from "@renderer/mocks/data";
 import { formatHM } from "@renderer/utils/format";
 
 const TimeLog = ({ entries }: { entries: MockTimeEntry[] }) => {
+  const { t } = useTranslation();
+
   const totalSeconds = entries.reduce((s, e) => s + e.durationSeconds, 0);
 
   return (
     <div className="card">
       <div className="card-title">
-        <span>📝 ЛОГ ЗА СЕГОДНЯ</span>
+        <span>📝 {t("dashboard.todayLog")}</span>
         <span className="mono">{formatHM(totalSeconds)}</span>
       </div>
 

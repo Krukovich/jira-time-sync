@@ -23,7 +23,7 @@ export const mockTasks: MockTask[] = [
     jiraKey: "PROJ-1234",
     summary: "Fix authentication bug",
     status: "In Progress",
-    dueDate: "Сегодня",
+    dueDate: "today",
     trackedSeconds: 12000,
     estimateSeconds: 28800,
   },
@@ -32,7 +32,7 @@ export const mockTasks: MockTask[] = [
     jiraKey: "PROJ-1235",
     summary: "Refactor user service",
     status: "To Do",
-    dueDate: "Завтра",
+    dueDate: "tomorrow",
     trackedSeconds: 0,
     estimateSeconds: 14400,
   },
@@ -50,7 +50,7 @@ export const mockTasks: MockTask[] = [
     jiraKey: "PROJ-1250",
     summary: "Update dependencies",
     status: "To Do",
-    dueDate: "Просрочено",
+    dueDate: "overdue",
     trackedSeconds: 0,
     estimateSeconds: 3600,
   },
@@ -114,11 +114,11 @@ export const mockDayProgress = {
 };
 
 export const mockWeeklyStats = [
-  { day: "Пн", dev: 21600, nonDev: 3600, total: 25200 },
-  { day: "Вт", dev: 25200, nonDev: 1800, total: 27000 },
-  { day: "Ср", dev: 19800, nonDev: 5400, total: 25200 },
-  { day: "Чт", dev: 23400, nonDev: 3600, total: 27000 },
-  { day: "Пт", dev: 19800, nonDev: 2520, total: 22320 },
+  { day: "monday", dev: 21600, nonDev: 3600, total: 25200 },
+  { day: "tuesday", dev: 25200, nonDev: 1800, total: 27000 },
+  { day: "wednesday", dev: 19800, nonDev: 5400, total: 25200 },
+  { day: "thursday", dev: 23400, nonDev: 3600, total: 27000 },
+  { day: "friday", dev: 19800, nonDev: 2520, total: 22320 },
 ];
 
 export const mockMonthlyStats = {

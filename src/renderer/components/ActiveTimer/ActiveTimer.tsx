@@ -1,5 +1,7 @@
 // libraries
 import React from "react";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { formatClock } from "@renderer/utils/format";
 
@@ -14,6 +16,8 @@ export const ActiveTimer = ({
   elapsedSeconds: number;
   running: boolean;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className="card"
@@ -33,7 +37,7 @@ export const ActiveTimer = ({
               animation: running ? "pulse 1.5s infinite" : "none",
             }}
           />
-          {running ? "ИДЁТ ТАЙМЕР" : "ТАЙМЕР ОСТАНОВЛЕН"}
+          {running ? t("dashboard.activeTimer") : t("dashboard.timerStopped")}
         </span>
       </div>
 
@@ -67,7 +71,7 @@ export const ActiveTimer = ({
             color: "var(--text-primary)",
           }}
         >
-          ⏸ Пауза
+          ⏸ {t("dashboard.pause")}
         </button>
         <button
           style={{
@@ -78,16 +82,9 @@ export const ActiveTimer = ({
             color: "white",
           }}
         >
-          ⏹ Стоп
+          ⏹ {t("dashboard.stop")}
         </button>
       </div>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-      `}</style>
     </div>
   );
 };

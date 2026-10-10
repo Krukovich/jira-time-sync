@@ -1,16 +1,13 @@
 // libraries
 import React from "react";
-
-const pluralize = (n: number, one: string, few: string, many: string) => {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-
-  return many;
-};
+// hooks
+import { useTranslation } from "react-i18next";
+// utils
+import { pluralize } from "@renderer/utils/pluralize";
 
 const SubmitAllButton = ({ pending }: { pending: number }) => {
+  const { t } = useTranslation();
+
   const disabled = pending === 0;
 
   return (
@@ -28,7 +25,14 @@ const SubmitAllButton = ({ pending }: { pending: number }) => {
         transition: "background 0.2s",
       }}
     >
-      ⬆ Отправить всё в Jira ({pending} {pluralize(pending, "запись", "записи", "записей")})
+      ⬆ {t("dashboard.submitAll")} ({pending}{" "}
+      {pluralize(
+        pending,
+        t("dashboard.record_one"),
+        t("dashboard.record_few"),
+        t("dashboard.record_many"),
+      )}
+      )
     </button>
   );
 };

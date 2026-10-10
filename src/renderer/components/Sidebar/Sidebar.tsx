@@ -1,17 +1,20 @@
 // libraries
 import React from "react";
 // hooks
+import { useTranslation } from "react-i18next";
 import { useNavigation, View } from "@renderer/store/navigation";
 import { useTheme } from "@renderer/store/theme";
 
 const items: { id: View; icon: string; label: string }[] = [
-  { id: "dashboard", icon: "⏱", label: "Дашборд" },
-  { id: "tasks", icon: "📋", label: "Задачи" },
-  { id: "stats", icon: "📊", label: "Статистика" },
-  { id: "settings", icon: "⚙️", label: "Настройки" },
+  { id: "dashboard", icon: "⏱", label: "nav.dashboard" },
+  { id: "tasks", icon: "📋", label: "nav.tasks" },
+  { id: "stats", icon: "📊", label: "nav.stats" },
+  { id: "settings", icon: "⚙️", label: "nav.settings" },
 ];
 
 const Sidebar = () => {
+  const { t } = useTranslation();
+
   const { view, setView } = useNavigation();
   const { theme, toggleTheme } = useTheme();
 
@@ -31,7 +34,7 @@ const Sidebar = () => {
       {items.map((item) => (
         <button
           key={item.id}
-          title={item.label}
+          title={t(item.label)}
           onClick={() => setView(item.id)}
           style={{
             width: 40,
@@ -51,7 +54,7 @@ const Sidebar = () => {
       ))}
       <div style={{ flex: 1 }} />
       <button
-        title={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+        title={theme === "dark" ? t("nav.darkTheme") : t("nav.lightTheme")}
         onClick={toggleTheme}
         style={{
           width: 40,
@@ -67,7 +70,7 @@ const Sidebar = () => {
         {theme === "dark" ? "☀️" : "🌙"}
       </button>
       <button
-        title="Профиль"
+        title={t("nav.profile")}
         onClick={() => setView("profile")}
         style={{
           width: 40,

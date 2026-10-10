@@ -1,5 +1,7 @@
 // libraries
 import React from "react";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { MockTask } from "@renderer/mocks/data";
 import { formatHM } from "@renderer/utils/format";
@@ -13,11 +15,13 @@ const dueColor = (due: string | null) => {
 };
 
 const TaskList = ({ tasks, onStart }: { tasks: MockTask[]; onStart?: (key: string) => void }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="card">
       <div className="card-title">
-        <span>📋 МОИ ЗАДАЧИ</span>
-        <span style={{ fontSize: 11 }}>Фильтр: Все ▾</span>
+        <span>📋 {t("dashboard.myTasks")}</span>
+        <span style={{ fontSize: 11 }}>{t("dashboard.filter")}: Все ▾</span>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -66,7 +70,9 @@ const TaskList = ({ tasks, onStart }: { tasks: MockTask[]; onStart?: (key: strin
                   {task.dueDate && (
                     <>
                       <span>·</span>
-                      <span style={{ color: dueColor(task.dueDate) }}>⏰ {task.dueDate}</span>
+                      <span style={{ color: dueColor(t(`dashboard.${task.dueDate}`)) }}>
+                        ⏰ {t(`dashboard.${task.dueDate}`)}
+                      </span>
                     </>
                   )}
                 </div>
@@ -97,7 +103,7 @@ const TaskList = ({ tasks, onStart }: { tasks: MockTask[]; onStart?: (key: strin
                   fontSize: 12,
                 }}
               >
-                ▶ Запустить
+                ▶ {t("dashboard.start")}
               </button>
             </div>
           );

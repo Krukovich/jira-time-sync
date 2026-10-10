@@ -1,12 +1,16 @@
 // libraries
 import React from "react";
-// components
+// components=
 import StatCard from "@renderer/components/StatCard/StatCard";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { mockMonthlyStats, mockWeeklyStats } from "@renderer/mocks/data";
 import { formatHM } from "@renderer/utils/format";
 
 const Statistics = () => {
+  const { t } = useTranslation();
+
   const maxTotal = Math.max(...mockWeeklyStats.map((d) => d.total));
 
   return (
@@ -21,8 +25,8 @@ const Statistics = () => {
           marginBottom: 24,
         }}
       >
-        <StatCard label="Всего за месяц" value={formatHM(mockMonthlyStats.totalTracked)} />
-        <StatCard label="Среднее в день" value={formatHM(mockMonthlyStats.avgPerDay)} />
+        <StatCard label={t("stats.totalMonth")} value={formatHM(mockMonthlyStats.totalTracked)} />
+        <StatCard label={t("stats.avgPerDay")} value={formatHM(mockMonthlyStats.avgPerDay)} />
         <StatCard label="Dev" value={`${mockMonthlyStats.devPercent}%`} color="var(--accent)" />
         <StatCard
           label="Non-dev"
@@ -30,19 +34,19 @@ const Statistics = () => {
           color="var(--warning)"
         />
         <StatCard
-          label="Отправлено worklog"
+          label={t("stats.submitted")}
           value={String(mockMonthlyStats.submittedWorklogs)}
           color="var(--success)"
         />
         <StatCard
-          label="Не отправлено"
+          label={t("stats.pending")}
           value={String(mockMonthlyStats.pendingWorklogs)}
           color="var(--danger)"
         />
       </div>
 
       <div className="card">
-        <div className="card-title">📈 За неделю</div>
+        <div className="card-title">📈 {t("stats.weekChart")}</div>
         <div
           style={{
             display: "flex",
@@ -55,6 +59,7 @@ const Statistics = () => {
           {mockWeeklyStats.map((day) => {
             const totalHeight = (day.total / maxTotal) * 100;
             const devShare = (day.dev / day.total) * 100;
+
             return (
               <div
                 key={day.day}
@@ -86,7 +91,9 @@ const Statistics = () => {
                   <div style={{ height: `${devShare}%`, background: "var(--accent)" }} />
                   <div style={{ height: `${100 - devShare}%`, background: "var(--warning)" }} />
                 </div>
-                <div style={{ fontSize: 12, color: "var(--text-primary)" }}>{day.day}</div>
+                <div style={{ fontSize: 12, color: "var(--text-primary)" }}>
+                  {t(`stats.${day.day}`)}
+                </div>
               </div>
             );
           })}
