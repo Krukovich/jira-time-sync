@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 // hooks
-import { useNavigation, View } from "../../store/navigation.js";
+import { useNavigation, View } from "@renderer/store/navigation";
 
 const items: { id: View; icon: string; label: string }[] = [
   { id: "dashboard", icon: "⏱", label: "Дашборд" },

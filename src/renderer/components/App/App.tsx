@@ -1,14 +1,14 @@
 // libraries
 import React from "react";
 // components
-import Sidebar from "../Sidebar/Sidebar.js";
-import Dashboard from "../../views/Dashboard.js";
-import Tasks from "../../views/Tasks.js";
-import Statistics from "../../views/Statistics.js";
-import Profile from "../../views/Profile.js";
-import Settings from "../../views/Settings.js";
+import Sidebar from "@renderer/components/Sidebar/Sidebar";
+import Dashboard from "@renderer/views/Dashboard";
+import Tasks from "@renderer/views/Tasks";
+import Statistics from "@renderer/views/Statistics";
+import Settings from "@renderer/views/Settings";
+import Profile from "@renderer/views/Profile";
 // hooks
-import { useNavigation } from "../../store/navigation.js";
+import { useNavigation } from "@renderer/store/navigation";
 // utils
 import "../../styles/global.css";
 

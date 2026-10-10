@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 // utils
-import { formatHM } from "../../utils/format.js";
+import { formatHM } from "@renderer/utils/format";
 
 const Stat = ({ label, value, color }: { label: string; value: string; color?: string }) => {
   return (

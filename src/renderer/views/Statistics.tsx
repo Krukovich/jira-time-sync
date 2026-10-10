@@ -1,8 +1,8 @@
 // libraries
 import React from "react";
 // utils
-import { formatHM } from "../utils/format.js";
-import { mockMonthlyStats, mockWeeklyStats } from "../mocks/data.js";
+import { mockMonthlyStats, mockWeeklyStats } from "@renderer/mocks/data";
+import { formatHM } from "@renderer/utils/format";
 
 const Statistics = () => {
   const maxTotal = Math.max(...mockWeeklyStats.map((d) => d.total));

@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 // utils
-import { formatClock } from "../../utils/format.js";
+import { formatClock } from "@renderer/utils/format";
 
 export const ActiveTimer = ({
   jiraKey,

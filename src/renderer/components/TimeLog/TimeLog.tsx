@@ -1,8 +1,8 @@
 // libraries
 import React from "react";
 // utils
-import { MockTimeEntry } from "../../mocks/data.js";
-import { formatHM } from "../../utils/format.js";
+import { MockTimeEntry } from "@renderer/mocks/data";
+import { formatHM } from "@renderer/utils/format";
 
 const TimeLog = ({ entries }: { entries: MockTimeEntry[] }) => {
   const totalSeconds = entries.reduce((s, e) => s + e.durationSeconds, 0);

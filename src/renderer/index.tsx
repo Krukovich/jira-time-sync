@@ -1,6 +1,8 @@
+// libraries
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./components/App/App.js";
+// components
+import App from "@renderer/components/App/App";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Не найден корневой элемент #root");

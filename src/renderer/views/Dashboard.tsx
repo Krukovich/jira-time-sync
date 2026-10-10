@@ -1,13 +1,13 @@
 // libraries
 import React from "react";
 // components
-import TopBar from "../components/TopBar/TopBar.js";
-import ActiveTimer from "../components/ActiveTimer/ActiveTimer.js";
-import DayProgress from "../components/DayProgress/DayProgress.js";
-import TaskList from "../components/TaskList/TaskList.js";
-import NonDevPanel from "../components/NonDevPanel/NonDevPanel.js";
-import TimeLog from "../components/TimeLog/TimeLog.js";
-import SubmitAllButton from "../components/SubmitAllButton/SubmitAllButton.js";
+import TopBar from "@renderer/components/TopBar/TopBar";
+import ActiveTimer from "@renderer/components/ActiveTimer/ActiveTimer";
+import DayProgress from "@renderer/components/DayProgress/DayProgress";
+import TaskList from "@renderer/components/TaskList/TaskList";
+import NonDevPanel from "@renderer/components/NonDevPanel/NonDevPanel";
+import TimeLog from "@renderer/components/TimeLog/TimeLog";
+import SubmitAllButton from "@renderer/components/SubmitAllButton/SubmitAllButton";
 // utils
 import { mockActiveTask, mockDayProgress, mockTasks, mockTimeEntries } from "../mocks/data.js";
 

@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 // utils
-import { formatHMS } from "../../utils/format.js";
+import { formatHMS } from "@renderer/utils/format";
 
 const TopBar = ({ tracked, goal }: { tracked: number; goal: number }) => {
   return (

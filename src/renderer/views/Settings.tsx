@@ -1,7 +1,7 @@
 // libraries
 import React, { ReactNode, useState } from "react";
 // utils
-import { mockSettings } from "../mocks/data.js";
+import { mockSettings } from "@renderer/mocks/data";
 
 const Settings = () => {
   const [settings, setSettings] = useState(mockSettings);

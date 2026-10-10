@@ -1,10 +1,10 @@
 // libraries
 import React, { useState } from "react";
 // components
-import TopBar from "../components/TopBar/TopBar.js";
-import TaskList from "../components/TaskList/TaskList.js";
+import TopBar from "@renderer/components/TopBar/TopBar";
+import TaskList from "@renderer/components/TaskList/TaskList";
 // utils
-import { mockDayProgress, mockTasks } from "../mocks/data.js";
+import { mockDayProgress, mockTasks } from "@renderer/mocks/data";
 
 const Tasks = () => {
   const [filter, setFilter] = useState<"all" | "dev" | "non-dev">("all");

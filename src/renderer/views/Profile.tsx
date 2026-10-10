@@ -1,8 +1,8 @@
 // libraries
 import React from "react";
 // utils
-import { mockProfile } from "../mocks/data.js";
-import { formatHM } from "../utils/format.js";
+import { mockProfile } from "@renderer/mocks/data";
+import { formatHM } from "@renderer/utils/format";
 
 function initials(name: string) {
   return name

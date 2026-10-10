@@ -1,3 +1,4 @@
+// libraries
 import { contextBridge } from "electron";
 
 // Безопасно экспортируем API в контекст React (будет доступно через window.electronAPI)

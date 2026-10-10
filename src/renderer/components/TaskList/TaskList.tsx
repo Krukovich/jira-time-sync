@@ -1,8 +1,8 @@
 // libraries
 import React from "react";
 // utils
-import { formatHM } from "../../utils/format.js";
-import { MockTask } from "../../mocks/data.js";
+import { MockTask } from "@renderer/mocks/data";
+import { formatHM } from "@renderer/utils/format";
 
 const dueColor = (due: string | null) => {
   if (!due) return "var(--text-secondary)";
