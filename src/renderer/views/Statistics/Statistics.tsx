@@ -15,7 +15,7 @@ const Statistics = () => {
 
   return (
     <div className="content-scroll">
-      <h1 style={{ fontSize: 20, marginBottom: 20 }}>📊 Статистика</h1>
+      <h1 style={{ fontSize: 20, marginBottom: 20 }}>📊 {t("stats.title")}</h1>
 
       <div
         style={{

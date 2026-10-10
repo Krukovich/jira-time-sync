@@ -13,7 +13,7 @@ export default {
   output: {
     path: path.resolve(__dirname, "dist/renderer"),
     filename: "bundle.js",
-    publicPath: "/",
+    publicPath: "./",
     clean: true,
   },
   resolve: {

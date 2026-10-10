@@ -1,18 +1,19 @@
 // libraries
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 import * as path from "path";
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     webPreferences: {
       preload: path.join("preload.js"),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
-  mainWindow.webContents.openDevTools();
+
+  Menu.setApplicationMenu(null);
 
   if (app.isPackaged) {
     mainWindow.loadURL("http://localhost:3000");
