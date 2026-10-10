@@ -112,3 +112,49 @@ export const mockDayProgress = {
   devSeconds: 19800, // 5ч 30м
   nonDevSeconds: 2520, // 42м
 };
+
+export const mockWeeklyStats = [
+  { day: "Пн", dev: 21600, nonDev: 3600, total: 25200 },
+  { day: "Вт", dev: 25200, nonDev: 1800, total: 27000 },
+  { day: "Ср", dev: 19800, nonDev: 5400, total: 25200 },
+  { day: "Чт", dev: 23400, nonDev: 3600, total: 27000 },
+  { day: "Пт", dev: 19800, nonDev: 2520, total: 22320 },
+];
+
+export const mockMonthlyStats = {
+  totalTracked: 432000, // 120ч
+  avgPerDay: 27000, // 7.5ч
+  devPercent: 82,
+  nonDevPercent: 18,
+  submittedWorklogs: 47,
+  pendingWorklogs: 3,
+};
+
+export const mockProfile = {
+  name: "Krukovich Alexey",
+  email: "alex@example.com",
+  avatar: "", // пусто — покажем инициалы
+  jiraUrl: "https://your-domain.atlassian.net",
+  role: "Senior Frontend Engineer",
+  joinedAt: "2024-03-15",
+  stats: {
+    totalHours: 1247,
+    tasksClosed: 89,
+    avgPerDay: 7.6,
+  },
+};
+
+export const mockSettings = {
+  jiraUrl: "https://your-domain.atlassian.net",
+  email: "alex@example.com",
+  hasToken: true,
+  dailyGoalHours: 8,
+  workingDays: [true, true, true, true, true, false, false],
+  notifications: {
+    lowHours: true,
+    unsentWorklog: true,
+    overdueTasks: false,
+  },
+  nonDevQuarter: "Q4 2026",
+  nonDevTaskKey: "PROJ-900",
+};

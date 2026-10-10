@@ -1,4 +1,6 @@
-import * as React from "react";
+// libraries
+import React from "react";
+// components
 import TopBar from "../components/TopBar/TopBar.js";
 import ActiveTimer from "../components/ActiveTimer/ActiveTimer.js";
 import DayProgress from "../components/DayProgress/DayProgress.js";
@@ -6,9 +8,10 @@ import TaskList from "../components/TaskList/TaskList.js";
 import NonDevPanel from "../components/NonDevPanel/NonDevPanel.js";
 import TimeLog from "../components/TimeLog/TimeLog.js";
 import SubmitAllButton from "../components/SubmitAllButton/SubmitAllButton.js";
+// utils
 import { mockActiveTask, mockDayProgress, mockTasks, mockTimeEntries } from "../mocks/data.js";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const pendingCount = mockTimeEntries.filter((e) => !e.synced).length;
   const nonDevTotal = mockTimeEntries
     .filter((e) => e.isNonDev)
@@ -46,4 +49,6 @@ export default function Dashboard() {
       </div>
     </>
   );
-}
+};
+
+export default Dashboard;

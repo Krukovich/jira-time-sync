@@ -1,14 +1,18 @@
 // libraries
 import React from "react";
+// hooks
+import { useNavigation, View } from "../../store/navigation.js";
 
-const items = [
+const items: { id: View; icon: string; label: string }[] = [
   { id: "dashboard", icon: "⏱", label: "Дашборд" },
   { id: "tasks", icon: "📋", label: "Задачи" },
   { id: "stats", icon: "📊", label: "Статистика" },
   { id: "settings", icon: "⚙️", label: "Настройки" },
 ];
 
-const Sidebar = ({ active = "dashboard" }: { active?: string }) => {
+const Sidebar = () => {
+  const { view, setView } = useNavigation();
+
   return (
     <aside
       style={{
@@ -25,6 +29,7 @@ const Sidebar = ({ active = "dashboard" }: { active?: string }) => {
         <button
           key={item.id}
           title={item.label}
+          onClick={() => setView(item.id)}
           style={{
             width: 40,
             height: 40,
@@ -33,8 +38,9 @@ const Sidebar = ({ active = "dashboard" }: { active?: string }) => {
             justifyContent: "center",
             borderRadius: 8,
             fontSize: 18,
-            background: active === item.id ? "var(--bg-card)" : "transparent",
-            color: active === item.id ? "var(--accent)" : "var(--text-secondary)",
+            background: view === item.id ? "var(--bg-card)" : "transparent",
+            color: view === item.id ? "var(--accent)" : "var(--text-secondary)",
+            transition: "background 0.15s, color 0.15s",
           }}
         >
           {item.icon}
@@ -42,14 +48,19 @@ const Sidebar = ({ active = "dashboard" }: { active?: string }) => {
       ))}
       <div style={{ flex: 1 }} />
       <button
-        title="Тема"
-        style={{ width: 40, height: 40, fontSize: 16, color: "var(--text-secondary)" }}
-      >
-        🌙
-      </button>
-      <button
         title="Профиль"
-        style={{ width: 40, height: 40, fontSize: 16, color: "var(--text-secondary)" }}
+        onClick={() => setView("profile")}
+        style={{
+          width: 40,
+          height: 40,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 8,
+          fontSize: 16,
+          background: view === "profile" ? "var(--bg-card)" : "transparent",
+          color: view === "profile" ? "var(--accent)" : "var(--text-secondary)",
+        }}
       >
         👤
       </button>
