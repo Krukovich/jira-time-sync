@@ -87,18 +87,18 @@
 
 ## 🛠 Стек технологий
 
-| Слой | Технология | Зачем |
-|---|---|---|
-| **Runtime** | Electron 33 | Кроссплатформенный десктоп |
-| **UI** | React 18 + TypeScript 6 | Типизированный UI |
-| **Сборка** | Webpack 5 + ts-loader | Бандлинг Main / Preload / Renderer |
-| **Состояние** | Zustand | Лёгкое управление состоянием |
+| Слой | Технология                 | Зачем |
+|---|----------------------------|---|
+| **Runtime** | Electron 47                | Кроссплатформенный десктоп |
+| **UI** | React 19 + TypeScript 6    | Типизированный UI |
+| **Сборка** | Webpack 5 + ts-loader      | Бандлинг Main / Preload / Renderer |
+| **Состояние** | Zustand                    | Лёгкое управление состоянием |
 | **БД** | PGlite (PostgreSQL в WASM) | Полноценный PostgreSQL локально |
-| **ORM** | Drizzle ORM | Типобезопасные запросы + миграции |
-| **UI-иконки** | lucide-react | Минималистичные иконки |
-| **Jira API** | REST API v3 | Задачи, worklog |
-| **Качество кода** | ESLint 10 + Prettier | Линтинг и форматирование |
-| **Git hooks** | Husky + lint-staged | Pre-commit проверки |
+| **ORM** | Drizzle ORM                | Типобезопасные запросы + миграции |
+| **UI-иконки** | lucide-react               | Минималистичные иконки |
+| **Jira API** | REST API v3                | Задачи, worklog |
+| **Качество кода** | ESLint 10 + Prettier       | Линтинг и форматирование |
+| **Git hooks** | Husky + lint-staged        | Pre-commit проверки |
 
 ---
 
