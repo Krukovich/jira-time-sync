@@ -1,0 +1,51 @@
+{
+  "name": "jira-time-sync",
+  "version": "1.0.0",
+  "main": "src/main/main.ts",
+  "type": "module",
+  "scripts": {
+    "build:main": "tsc",
+    "build:renderer": "webpack",
+    "build": "yarn build:main && yarn build:renderer",
+    "start": "yarn build && electron .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
+    "prepare": "husky",
+    "watch:main": "tsc -w",
+    "watch:renderer": "webpack --watch",
+    "dev": "concurrently \"yarn watch:main\" \"yarn watch:renderer\" \"delay 3 && electron .\""
+  },
+  "author": "Jane Doe",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run format",
+      "npm run lint"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "concurrently": "^10.0.6",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.5",
+    "electron": "^44.7.0",
+    "html-webpack-plugin": "^5.6.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "3.9.10",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.6.2",
+    "tsc-watch": "^7.2.1",
+    "typescript": "6.0.3",
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
+  },
+  "dependencies": {
+    "eslint": "^10.12.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

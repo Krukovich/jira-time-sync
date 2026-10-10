@@ -1,0 +1,61 @@
+# Dependency directories
+node_modules/
+.pnp
+.pnp.js
+
+# Build files
+dist/
+build/
+*.log
+
+# Cache
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE/Editor
+.vscode/
+.idea/
+ ../.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Parcel cache
+.cache
+.parcel-cache
+
+# MacOS
+.DS_Store
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+jest-cache/
+
+
+# Optional (если используете ESLint)
+.eslintcache
+
+# Optional (если используете pnpm)
+pnpm-lock.yaml
