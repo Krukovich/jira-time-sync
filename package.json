@@ -15,7 +15,7 @@
     "watch:renderer": "webpack --watch",
     "dev": "concurrently \"yarn watch:main\" \"yarn watch:renderer\" \"delay 3 && electron .\""
   },
-  "author": "Jane Doe",
+  "author": "Krukovich Alexey",
   "license": "MIT",
   "lint-staged": {
     "*.{ts,tsx}": [

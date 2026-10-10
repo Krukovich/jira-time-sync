@@ -305,7 +305,7 @@ yarn format           # Prettier
 
 ## 📄 Лицензия
 
-MIT © [Ваше имя]
+MIT © [Krukovich Alexey]
 
 ---
 
