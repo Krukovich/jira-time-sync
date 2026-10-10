@@ -13,7 +13,12 @@ function createWindow() {
     },
   });
   mainWindow.webContents.openDevTools();
-  mainWindow.loadFile(path.join("dist", "renderer", "index.html"));
+
+  if (app.isPackaged) {
+    mainWindow.loadURL("http://localhost:3000");
+  } else {
+    mainWindow.loadFile(path.join("dist", "renderer", "index.html"));
+  }
 }
 
 app.whenReady().then(() => {
