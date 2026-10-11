@@ -53,6 +53,7 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
+      publicPath: "./",
     }),
     new webpack.DefinePlugin({
       global: "window",
