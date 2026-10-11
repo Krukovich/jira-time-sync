@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Checkbox from "@renderer/components/common/Checkbox/Checkbox";
 import Section from "@renderer/components/common/Section/Section";
 import Field from "@renderer/components/common/Field/Field";
-import LanguageSwitcher from "@renderer/components/LanguageSwitcher";
+import LanguageSwitcher from "@renderer/components/LanguageSwitcher/LanguageSwitcher";
 // hooks
 import { useTranslation } from "react-i18next";
 // utils
