@@ -8,6 +8,20 @@
       "when": 1791705358889,
       "tag": "0000_modern_puma",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791726279792,
+      "tag": "0001_chunky_korg",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791830917202,
+      "tag": "0002_blue_speed_demon",
+      "breakpoints": true
     }
   ]
 }

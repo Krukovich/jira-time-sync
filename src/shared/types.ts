@@ -17,3 +17,11 @@ export interface TimeEntry {
   comment: string | null;
   syncStatus: "pending" | "synced" | "failed";
 }
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  displayName: string;
+  role: string;
+}

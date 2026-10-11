@@ -3,8 +3,65 @@ import { ipcMain } from "electron";
 import { eq, desc } from "drizzle-orm";
 import { getDb } from "./database";
 import { tasks, timeEntries } from "@shared/schema";
+import { loginUser, logoutUser, registerUser, validateSession } from "@main/auth-local";
+import { clearSessionToken, loadSessionToken, saveSessionToken } from "@main/session-store";
 
 export function registerIpcHandlers() {
+  ipcMain.handle(
+    "auth:register",
+    async (_e, data: { email: string; password: string; displayName?: string; role?: string }) => {
+      if (!data.email || !data.password || data.password.length < 6) {
+        return { ok: false, error: "Email и пароль (минимум 6 символов) обязательны" };
+      }
+      return registerUser(data.email, data.password, data.displayName, data.role);
+    },
+  );
+
+  ipcMain.handle("auth:login", async (_e, data: { email: string; password: string }) => {
+    const result = await loginUser(data.email, data.password);
+
+    if (result.ok && result.token) {
+      await saveSessionToken(result.token);
+    }
+
+    return result;
+  });
+
+  ipcMain.handle("auth:checkSession", async () => {
+    const token = await loadSessionToken();
+
+    if (!token) return { authenticated: false, reason: "no_token" };
+
+    const session = await validateSession(token);
+
+    if (!session) {
+      await clearSessionToken();
+
+      return { authenticated: false, reason: "expired_or_invalid" };
+    }
+
+    return {
+      authenticated: true,
+      user: {
+        id: session.user.id,
+        email: session.user.email,
+        displayName: session.user.displayName,
+        role: session.user.role,
+      },
+    };
+  });
+
+  ipcMain.handle("auth:logout", async () => {
+    const token = await loadSessionToken();
+
+    if (token) {
+      await logoutUser(token);
+      await clearSessionToken();
+    }
+
+    return { ok: true };
+  });
+
   ipcMain.handle("tasks:list", async () => {
     const db = getDb();
     return db.select().from(tasks).where(eq(tasks.isActive, true)).orderBy(tasks.dueDate);

@@ -19,3 +19,12 @@ export const formatHMS = (seconds: number) => {
 
   return `${h}ч ${m}м`;
 };
+
+export const formatName = (name: string) => {
+  return name
+    .split(" ")
+    .map((s) => s[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+};

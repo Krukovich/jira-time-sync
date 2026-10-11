@@ -32,5 +32,6 @@ export const initDatabase = async () => {
 
 export function getDb() {
   if (!db) throw new Error("База данных не инициализирована");
+
   return db;
 }
