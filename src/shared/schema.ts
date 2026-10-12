@@ -37,6 +37,7 @@ export const users = pgTable("users", {
   role: text("role"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   lastLoginAt: timestamp("last_login_at"),
+  avatarBase64: text("avatar_base64"),
 });
 
 export const sessions = pgTable("sessions", {

@@ -1,7 +1,9 @@
 // libraries
 import React, { useEffect, useState } from "react";
 // components
+import Avatar from "@renderer/components/common/Avatar/Avatar";
 import StatCard from "@renderer/components/StatCard/StatCard";
+import EditProfileModal from "@renderer/components/EditProfileModal/EditProfileModal";
 // interfaces
 import { IUser } from "@shared/types";
 // utils
@@ -11,6 +13,7 @@ import { formatHM, formatName } from "@renderer/utils/format";
 const Profile = () => {
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     let isCancelled = false;
@@ -75,7 +78,11 @@ const Profile = () => {
             color: "white",
           }}
         >
-          {formatName(user.displayName ?? user.email)}
+          {user.avatarBase64 ? (
+            <Avatar url={user.avatarBase64} />
+          ) : (
+            formatName(user.displayName ?? user.email)
+          )}
         </div>
         <div>
           <div style={{ fontSize: 18, fontWeight: 600 }}>{user.displayName ?? user.email}</div>
@@ -91,6 +98,7 @@ const Profile = () => {
         </div>
         <div style={{ flex: 1 }} />
         <button
+          onClick={() => setEditing(true)}
           className="btn-secondary"
           style={{
             padding: "8px 16px",
@@ -138,6 +146,17 @@ const Profile = () => {
       >
         Выйти
       </button>
+
+      {editing && (
+        <EditProfileModal
+          user={user}
+          onClose={() => setEditing(false)}
+          onSaved={(updated) => {
+            setUser(updated);
+            setEditing(false);
+          }}
+        />
+      )}
     </div>
   );
 };

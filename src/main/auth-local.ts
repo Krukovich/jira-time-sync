@@ -98,7 +98,13 @@ export const validateSession = async (token: string) => {
   if (!user) return null;
 
   return {
-    user: { id: user.id, email: user.email, displayName: user.displayName, role: user.role },
+    user: {
+      id: user.id,
+      email: user.email,
+      displayName: user.displayName,
+      role: user.role,
+      avatarBase64: user.avatarBase64,
+    },
     session,
   };
 };

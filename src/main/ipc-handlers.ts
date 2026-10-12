@@ -2,7 +2,7 @@
 import { ipcMain } from "electron";
 import { eq, desc } from "drizzle-orm";
 import { getDb } from "./database";
-import { tasks, timeEntries } from "@shared/schema";
+import { tasks, timeEntries, users } from "@shared/schema";
 import { loginUser, logoutUser, registerUser, validateSession } from "@main/auth-local";
 import { clearSessionToken, loadSessionToken, saveSessionToken } from "@main/session-store";
 
@@ -14,6 +14,47 @@ export function registerIpcHandlers() {
         return { ok: false, error: "Email и пароль (минимум 6 символов) обязательны" };
       }
       return registerUser(data.email, data.password, data.displayName, data.role);
+    },
+  );
+
+  ipcMain.handle(
+    "auth:updateProfile",
+    async (
+      _e,
+      data: {
+        userId: string;
+        displayName?: string;
+        role?: string;
+        avatarBase64?: string | null;
+      },
+    ) => {
+      if (!data.userId) throw new Error("userId обязателен");
+
+      const db = getDb();
+      const updates: any = {};
+
+      if (data.displayName !== undefined) updates.displayName = data.displayName;
+      if (data.avatarBase64 !== undefined) updates.avatarBase64 = data.avatarBase64;
+      if (data.role !== undefined) updates.role = data.role;
+
+      if (Object.keys(updates).length === 0) {
+        return { ok: false, error: "Нет данных для обновления" };
+      }
+
+      await db.update(users).set(updates).where(eq(users.id, data.userId));
+
+      const [updated] = await db.select().from(users).where(eq(users.id, data.userId)).limit(1);
+
+      return {
+        ok: true,
+        user: {
+          id: updated.id,
+          email: updated.email,
+          displayName: updated.displayName,
+          role: updated.role,
+          avatarBase64: updated.avatarBase64,
+        },
+      };
     },
   );
 
@@ -47,6 +88,7 @@ export function registerIpcHandlers() {
         email: session.user.email,
         displayName: session.user.displayName,
         role: session.user.role,
+        avatarBase64: session.user.avatarBase64,
       },
     };
   });
