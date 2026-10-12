@@ -1,21 +1,61 @@
 // libraries
-import React from "react";
+import React, { useEffect, useState } from "react";
 // components
+import Avatar from "@renderer/components/common/Avatar/Avatar";
 import StatCard from "@renderer/components/StatCard/StatCard";
+import EditProfileModal from "@renderer/components/EditProfileModal/EditProfileModal";
+// interfaces
+import { IUser } from "@shared/types";
 // utils
 import { mockProfile } from "@renderer/mocks/data";
-import { formatHM } from "@renderer/utils/format";
-
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((s) => s[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-}
+import { formatHM, formatName } from "@renderer/utils/format";
 
 const Profile = () => {
+  const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const fetchUserData = async () => {
+      try {
+        const res = await window.api.auth.checkSession();
+
+        if (!isCancelled) {
+          if (res.authenticated && res.user) {
+            setUser(res.user as IUser);
+          } else {
+            setUser(null);
+          }
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки:", error);
+      } finally {
+        if (!isCancelled) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchUserData();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await window.api.auth.logout();
+    window.location.reload();
+  };
+
+  if (loading) return <div style={{ padding: 24 }}>Загрузка...</div>;
+
+  if (!user) {
+    return <div style={{ padding: 24 }}>Пользователь не авторизован</div>;
+  }
+
   return (
     <div className="content-scroll" style={{ maxWidth: 720 }}>
       <h1 style={{ fontSize: 20, marginBottom: 20 }}>👤 Профиль</h1>
@@ -38,22 +78,27 @@ const Profile = () => {
             color: "white",
           }}
         >
-          {initials(mockProfile.name)}
+          {user.avatarBase64 ? (
+            <Avatar url={user.avatarBase64} />
+          ) : (
+            formatName(user.displayName ?? user.email)
+          )}
         </div>
         <div>
-          <div style={{ fontSize: 18, fontWeight: 600 }}>{mockProfile.name}</div>
+          <div style={{ fontSize: 18, fontWeight: 600 }}>{user.displayName ?? user.email}</div>
           <div style={{ fontSize: 12, color: "var(--text-secondary)", marginTop: 2 }}>
-            {mockProfile.role}
+            {user.role ?? "user"}
           </div>
           <div
             className="mono"
             style={{ fontSize: 12, color: "var(--text-secondary)", marginTop: 6 }}
           >
-            {mockProfile.email}
+            {user.email}
           </div>
         </div>
         <div style={{ flex: 1 }} />
         <button
+          onClick={() => setEditing(true)}
           className="btn-secondary"
           style={{
             padding: "8px 16px",
@@ -81,11 +126,37 @@ const Profile = () => {
           <span style={{ color: "var(--text-secondary)" }}>URL</span>
           <span className="mono">{mockProfile.jiraUrl}</span>
           <span style={{ color: "var(--text-secondary)" }}>Аккаунт</span>
-          <span>{mockProfile.email}</span>
+          <span>{user.email}</span>
           <span style={{ color: "var(--text-secondary)" }}>Дата регистрации</span>
           <span>{new Date(mockProfile.joinedAt).toLocaleDateString("ru-RU")}</span>
         </div>
       </div>
+
+      <button
+        onClick={handleLogout}
+        className="btn-secondary"
+        style={{
+          marginTop: "14px",
+          padding: "8px 16px",
+          background: "var(--danger)",
+          border: "1px solid var(--border)",
+          borderRadius: 6,
+          color: "var(--text-primary)",
+        }}
+      >
+        Выйти
+      </button>
+
+      {editing && (
+        <EditProfileModal
+          user={user}
+          onClose={() => setEditing(false)}
+          onSaved={(updated) => {
+            setUser(updated);
+            setEditing(false);
+          }}
+        />
+      )}
     </div>
   );
 };

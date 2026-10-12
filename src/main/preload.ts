@@ -17,4 +17,13 @@ contextBridge.exposeInMainWorld("api", {
   db: {
     debugQuery: (sql: string) => ipcRenderer.invoke("db:debug-query", sql),
   },
+  auth: {
+    updateProfile: (data: { userId: string; displayName?: string; avatarBase64?: string | null }) =>
+      ipcRenderer.invoke("auth:updateProfile", data),
+    register: (data: { email: string; password: string; displayName?: string }) =>
+      ipcRenderer.invoke("auth:register", data),
+    login: (data: { email: string; password: string }) => ipcRenderer.invoke("auth:login", data),
+    checkSession: () => ipcRenderer.invoke("auth:checkSession"),
+    logout: () => ipcRenderer.invoke("auth:logout"),
+  },
 });

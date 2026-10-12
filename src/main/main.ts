@@ -3,8 +3,17 @@ import { app, BrowserWindow, Menu } from "electron";
 import * as path from "path";
 import { initDatabase } from "@main/database";
 import { registerIpcHandlers } from "@main/ipc-handlers";
+import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
 const isDev = !app.isPackaged;
+
+const addReactDevTools = () => {
+  if (process.env.NODE_ENV === "development") {
+    installExtension(REACT_DEVELOPER_TOOLS)
+      .then((name) => console.log(`Добавлено расширение: ${name}`))
+      .catch((err) => console.log("Ошибка при установке расширения: ", err));
+  }
+};
 
 const createWindow = () => {
   const preloadPath = path.join(app.getAppPath(), "dist", "preload", "preload.cjs");
@@ -38,6 +47,7 @@ app.whenReady().then(async () => {
   await initDatabase();
 
   registerIpcHandlers();
+  addReactDevTools();
   createWindow();
 
   app.on("activate", () => {
