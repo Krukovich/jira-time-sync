@@ -51,6 +51,7 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
       const res = await window.api.auth.updateProfile({
         userId: user.id,
         displayName: displayName || undefined,
+        role: role || undefined,
         avatarBase64,
       });
       if (!res.ok) {

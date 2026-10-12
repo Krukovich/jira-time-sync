@@ -5,7 +5,7 @@ declare global {
     api: {
       auth: {
         register: (data: { email: string; password: string; displayName: string, role: string }) => Promise<any>;
-        updateProfile: (data: { userId: string; displayName?: string; avatarBase64?: string | null }) => Promise<any>;
+        updateProfile: (data: { userId: string; displayName?: string; role?: string, avatarBase64?: string | null }) => Promise<any>;
         login: (data: { email: string; password: string }) => Promise<any>;
         checkSession: () => Promise<any>;
         logout: () => Promise<any>;
