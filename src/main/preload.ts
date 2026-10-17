@@ -30,4 +30,9 @@ contextBridge.exposeInMainWorld("api", {
     checkSession: () => ipcRenderer.invoke("auth:checkSession"),
     logout: () => ipcRenderer.invoke("auth:logout"),
   },
+  timer: {
+    toggleTimer: (isRunning: boolean) => {
+      ipcRenderer.send("timer:toggle", { isRunning });
+    },
+  },
 });
