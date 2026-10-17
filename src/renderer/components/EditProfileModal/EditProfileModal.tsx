@@ -2,6 +2,8 @@
 import React, { useState, useRef } from "react";
 // interfaces
 import { IUser } from "@shared/types";
+// hooks
+import { useTranslation } from "react-i18next";
 
 interface Props {
   user: IUser;
@@ -12,6 +14,8 @@ interface Props {
 const MAX_FILE_SIZE = 500 * 1024;
 
 const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
+  const { t } = useTranslation();
+
   const [displayName, setDisplayName] = useState<string>(user.displayName);
   const [role, setRole] = useState<string>(user.role);
   const [avatarBase64, setAvatarBase64] = useState<string | null>(user.avatarBase64);
@@ -94,7 +98,7 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 style={{ fontSize: 18 }}>Редактировать профиль</h2>
+        <h2 style={{ fontSize: 18 }}> {t("profile.editProfile")}</h2>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
           <div
@@ -133,7 +137,7 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
             style={{ display: "none" }}
           />
           <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-            Кликни, чтобы загрузить аватар
+            {t("profile.clickToUpload")}
           </div>
           {avatarBase64 && (
             <button
@@ -146,13 +150,15 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
                 cursor: "pointer",
               }}
             >
-              Удалить аватар
+              {t("profile.clickToDeleteAvatar")}
             </button>
           )}
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <label style={{ fontSize: 12, color: "var(--text-secondary)" }}>Имя</label>
+          <label style={{ fontSize: 12, color: "var(--text-secondary)" }}>
+            {t("profile.name")}
+          </label>
           <input
             type="text"
             value={displayName}
@@ -160,7 +166,9 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
             className="input"
             placeholder="Как к вам обращаться"
           />
-          <label style={{ fontSize: 12, color: "var(--text-secondary)" }}>Роль</label>
+          <label style={{ fontSize: 12, color: "var(--text-secondary)" }}>
+            {t("profile.role")}
+          </label>
           <input
             type="text"
             value={role}
@@ -197,7 +205,7 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
               color: "var(--text-primary)",
             }}
           >
-            Отмена
+            {t("common.cancel")}
           </button>
           <button
             onClick={handleSave}
@@ -212,7 +220,7 @@ const EditProfileModal = ({ user, onClose, onSaved }: Props) => {
               opacity: loading ? 0.6 : 1,
             }}
           >
-            {loading ? "Сохранение..." : "Сохранить"}
+            {loading ? "Сохранение..." : t("common.save")}
           </button>
         </div>
       </div>
