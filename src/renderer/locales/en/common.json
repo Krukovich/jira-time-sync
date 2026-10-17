@@ -89,7 +89,12 @@
     "avgPerDay": "Average per day",
     "jiraConnection": "JIRA CONNECTION",
     "account": "Account",
-    "joinedAt": "Joined"
+    "joinedAt": "Joined",
+    "editProfile": "Edite profile",
+    "clickToUpload": "Click to upload avatar",
+    "clickToDeleteAvatar": "Delete avatar",
+    "name": "Name",
+    "role": "Role"
   },
   "common": {
     "loading": "Loading...",
@@ -98,6 +103,7 @@
     "confirm": "Confirm",
     "delete": "Delete",
     "edit": "Edit",
-    "close": "Close"
+    "close": "Close",
+    "exit": "Exit"
   }
 }

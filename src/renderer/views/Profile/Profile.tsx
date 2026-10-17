@@ -6,11 +6,15 @@ import StatCard from "@renderer/components/StatCard/StatCard";
 import EditProfileModal from "@renderer/components/EditProfileModal/EditProfileModal";
 // interfaces
 import { IUser } from "@shared/types";
+// hooks
+import { useTranslation } from "react-i18next";
 // utils
 import { mockProfile } from "@renderer/mocks/data";
 import { formatHM, formatName } from "@renderer/utils/format";
 
 const Profile = () => {
+  const { t } = useTranslation();
+
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -108,16 +112,19 @@ const Profile = () => {
             color: "var(--text-primary)",
           }}
         >
-          Редактировать
+          {t("common.edit")}
         </button>
       </div>
 
       <div
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 16 }}
       >
-        <StatCard label="Всего часов" value={formatHM(mockProfile.stats.totalHours * 3600)} />
-        <StatCard label="Задач закрыто" value={String(mockProfile.stats.tasksClosed)} />
-        <StatCard label="Среднее в день" value={`${mockProfile.stats.avgPerDay}ч`} />
+        <StatCard
+          label={t("profile.totalHours")}
+          value={formatHM(mockProfile.stats.totalHours * 3600)}
+        />
+        <StatCard label={t("profile.tasksClosed")} value={String(mockProfile.stats.tasksClosed)} />
+        <StatCard label={t("profile.avgPerDay")} value={`${mockProfile.stats.avgPerDay}ч`} />
       </div>
 
       <div className="card">
@@ -144,7 +151,7 @@ const Profile = () => {
           color: "var(--text-primary)",
         }}
       >
-        Выйти
+        {t("common.exit")}
       </button>
 
       {editing && (
