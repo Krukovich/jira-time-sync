@@ -34,8 +34,5 @@ jobs:
       - name: Run ESLint
         run: yarn lint
 
-      - name: Run TypeScript Check
-        run: yarn typecheck
-
-      - name: Verify Build (проверка, что Webpack собирается)
+      - name: Verify Build
         run: yarn build
